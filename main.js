@@ -1,3 +1,11 @@
+
+function checkLoginState() {
+  FB.getLoginStatus(function(response) {
+  statusChangeCallback(response);
+  console.log(response);
+  });
+  }
+
 $(function(){
 
 window.fbAsyncInit = function() {
@@ -19,11 +27,5 @@ window.fbAsyncInit = function() {
    }(document, 'script', 'facebook-jssdk'));
 
 
-function checkLoginState() {
-	FB.getLoginStatus(function(response) {
-	statusChangeCallback(response);
-	console.log(response);
-	});
-	}
 
 });
