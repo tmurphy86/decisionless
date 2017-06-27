@@ -54,8 +54,8 @@ $('.fb-login-button').on('click', function(){
     var fbDB = database.ref("/decisionless");
 
     fbDB.ref().push({
-        ID: userID
-        visted: //beenTo Array
+        ID: userID,
+        visted: userID//beenTo Array
       });
 
 
