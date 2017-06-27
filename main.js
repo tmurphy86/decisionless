@@ -53,7 +53,7 @@ $('.fb-login-button').on('click', function(){
     // All of our connections will be stored in this directory.
     var fbDB = database.ref("/decisionless");
 
-    fbDB.ref().push({
+    fbDB.push({
         ID: userID,
         visted: userID//beenTo Array
       });
