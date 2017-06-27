@@ -34,6 +34,15 @@ $('.fb-login-button').on('click', function(){
 
     FB.api('/me', {fields: 'id'}, function(response) {
       userID = response;
+
+   fbDB.push({
+        ID: userID,
+        visted: userID//beenTo Array
+      });
+
+      console.log(userID);
+
+
     });
 });
 
@@ -53,10 +62,7 @@ $('.fb-login-button').on('click', function(){
     // All of our connections will be stored in this directory.
     var fbDB = database.ref("/decisionless");
 
-    fbDB.push({
-        ID: userID,
-        visted: userID//beenTo Array
-      });
+
 
 
       console.log(userID);
