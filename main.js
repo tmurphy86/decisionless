@@ -48,6 +48,15 @@ $('.fb-login-button').on('click', function(){
       };
       firebase.initializeApp(config);
 
+      // Create a variable to reference the database.
+    var database = firebase.database();
+    // All of our connections will be stored in this directory.
+    var fbDB = database.ref("/decisionless");
+
+    fbDB.ref().push({
+        ID: userID
+        visted: //beenTo Array
+      });
 
 
       console.log(userID);
