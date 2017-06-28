@@ -30,7 +30,7 @@ $(function(){
          js.src = "https://connect.facebook.net/en_US/sdk.js";
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
-      checkLoginState();
+      // checkLoginState(); still causing an undefined error
 
 //checking FB login status
 console.log(checkLoginState);
@@ -47,7 +47,7 @@ if(checkLoginState) {
 
       console.log(userID);
 
-  }.bind(this));
+  }); //.bind(this) pulled out
 }
 
 
