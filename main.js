@@ -4,9 +4,10 @@ var userID;
 function checkLoginState() {
   FB.getLoginStatus(function(response) {
   statusChangeCallback(response);
-  console.log(response);
+  console.log(response, userID);
   });
   }
+checkLoginState();
 
 $(function(){
 
@@ -30,12 +31,30 @@ $(function(){
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
 
+//checking FB login status
+if(checkLoginState) {
+
+   FB.api('/me', {fields: 'id'}, function(response) {
+
+      userID = response;
+
+   database.ref("/decisionless").push({
+        ID: userID,
+        visted: userID//beenTo Array
+      });
+
+      console.log(userID);
+
+  });
+}
+
+
 $('.fb-login-button').on('click', function(){
 
     FB.api('/me', {fields: 'id'}, function(response) {
       userID = response;
 
-   fbDB.push({
+   database.ref("/decisionless").push({
         ID: userID,
         visted: userID//beenTo Array
       });
