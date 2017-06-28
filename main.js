@@ -47,7 +47,7 @@ if(checkLoginState) {
 
       console.log(userID);
 
-  });
+  }.bind(this));
 }
 
 
