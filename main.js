@@ -7,7 +7,7 @@ function checkLoginState() {
   console.log(response, userID);
   });
   }
-checkLoginState();
+
 
 $(function(){
 
@@ -30,8 +30,10 @@ $(function(){
          js.src = "https://connect.facebook.net/en_US/sdk.js";
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
+      checkLoginState();
 
 //checking FB login status
+console.log(checkLoginState);
 if(checkLoginState) {
 
    FB.api('/me', {fields: 'id'}, function(response) {
