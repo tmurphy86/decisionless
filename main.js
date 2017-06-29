@@ -33,22 +33,22 @@ $(function(){
       // checkLoginState(); still causing an undefined error
 
 //checking FB login status
-console.log(checkLoginState);
-if(checkLoginState) {
+// console.log(checkLoginState);
+// if(checkLoginState) {
 
-   FB.api('/me', {fields: 'id'}, function(response) {
+//    FB.api('/me', {fields: 'id'}, function(response) {
 
-      userID = response;
+//       userID = response;
 
-   database.ref("/decisionless").push({
-        ID: userID,
-        visted: userID//beenTo Array
-      });
+//    database.ref("/decisionless").push({
+//         ID: userID,
+//         visted: userID//beenTo Array
+//       });
 
-      console.log(userID);
+//       console.log(userID);
 
-  }); //.bind(this) pulled out
-}
+//   }); //.bind(this) pulled out
+// }
 
 
 $('.fb-login-button').on('click', function(){
