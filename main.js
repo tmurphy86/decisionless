@@ -7,7 +7,23 @@ function checkLoginState() {
   console.log(response, userID);
   });
   }
+$(document).on(
+    'fbload',  //  <---- HERE'S OUR CUSTOM EVENT BEING LISTENED FOR
+    function(){
+        //some code that requires the FB object
+        //such as...
+        FB.getLoginStatus(function(res){
+          console.log(res.status);
+            if( res.status == "connected" ){
+              console.log("working");
+                // FB.api('/me', function(fbUser) {
+                //     console.log("Open the pod bay doors, " + fbUser.name + ".");
+                // });
+            }
+        });
 
+    }
+);
 
 $(function(){
 
@@ -30,6 +46,11 @@ $(function(){
          js.src = "https://connect.facebook.net/en_US/sdk.js";
          fjs.parentNode.insertBefore(js, fjs);
        }(document, 'script', 'facebook-jssdk'));
+
+      $(document).trigger('fbload');
+
+
+
       // checkLoginState(); still causing an undefined error
 
 //checking FB login status
