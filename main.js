@@ -20,10 +20,8 @@ window.fbAsyncInit = function() {
  }(document, 'script', 'facebook-jssdk'));
 
 
-
 //global variables
 var userID;
-
 
 //on document load function
 $(function(){
@@ -64,9 +62,6 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
                 FB.api('/me', {fields: 'id'}, function(response) {
                    userID = response;
                    checkIfUserExists(userID) //coded after push on ready
-
-
-
 
               console.log(userID);
               });
