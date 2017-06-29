@@ -83,6 +83,7 @@ $('.fb-login-button').on('click', function(){
 
     FB.api('/me', {fields: 'id'}, function(response) {
       userID = response;
+      // if (userID)
 
    database.ref("/decisionless").push({
         ID: userID,
