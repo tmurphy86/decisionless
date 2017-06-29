@@ -82,12 +82,16 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
 
 function userExistsCallback(userId, exists) {
   if (exists) {
+
     alert('user ' + userId + ' exists!');
+    
   } else {
-                    database.ref("/decisionless").push({
-                    ID: userID,
-                    visted: userID//beenTo Array
-                 });
+
+      database.ref("/decisionless").push({
+        ID: userID,
+        visted: userID//beenTo Array
+      });
+
     alert('user ' + userId + ' does not exist!');
   }
 }
