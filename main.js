@@ -60,7 +60,7 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
                 FB.api('/me', function(fbUser) {
                     console.log(fbUser);
                 FB.api('/me', {fields: 'id'}, function(response) {
-                   userID = response;
+                   userID = response.id;
                    console.log(userID);
                    checkIfUserExists(userID) //coded after push on ready
 
