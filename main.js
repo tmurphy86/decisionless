@@ -63,7 +63,7 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
                     console.log(fbUser);
                 FB.api('/me', {fields: 'id'}, function(response) {
                    userID = response;
-                   checkIfUserExists(userId) //coded after push on ready
+                   checkIfUserExists(userID) //coded after push on ready
 
 
 
@@ -80,11 +80,11 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
 
 
 
-function userExistsCallback(userId, exists) {
+function userExistsCallback(userID, exists) {
   if (exists) {
 
-    alert('user ' + userId + ' exists!');
-    
+    alert('user ' + userID + ' exists!');
+
   } else {
 
       database.ref("/decisionless").push({
@@ -92,16 +92,16 @@ function userExistsCallback(userId, exists) {
         visted: userID//beenTo Array
       });
 
-    alert('user ' + userId + ' does not exist!');
+    alert('user ' + userID + ' does not exist!');
   }
 }
 
 // Tests to see if /users/<userId> has any data. 
 function checkIfUserExists(userId) {
-  fbDB.child(userId).once('value', function(snapshot) {
+  fbDB.child(userID).once('value', function(snapshot) {
     console.log("checking if user is there" + snapshot);
     var exists = (snapshot.val() !== null);
-    userExistsCallback(userId, exists);
+    userExistsCallback(userID, exists);
   });
 }
 
