@@ -97,7 +97,7 @@ function checkIfUserExists(userId) {
   console.log("entering function exists" + userID, fbDB);
 
   fbDB.child(userID).once('value', function(snapshot) {
-    console.log("checking if user is there" + snapshot);
+    console.log("checking if user is there" + snapshot.val());
     var exists = (snapshot.val() !== null);
     userExistsCallback(userID, exists);
   });
