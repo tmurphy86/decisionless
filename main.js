@@ -1,27 +1,27 @@
 
-//FACEBOOK AUTH SDK 
-window.fbAsyncInit = function() {
-  FB.init({
-    appId      : '816250271863348',
-    cookie     : true,
-    xfbml      : true,
-    version    : 'v2.8'
-  });
-  FB.AppEvents.logPageView();
-  $(document).trigger('fbload');
-};
+// //FACEBOOK AUTH SDK 
+// window.fbAsyncInit = function() {
+//   FB.init({
+//     appId      : '816250271863348',
+//     cookie     : true,
+//     xfbml      : true,
+//     version    : 'v2.8'
+//   });
+//   FB.AppEvents.logPageView();
+//   $(document).trigger('fbload');
+// };
 
-(function(d, s, id){
-   var js, fjs = d.getElementsByTagName(s)[0];
-   if (d.getElementById(id)) {return;}
-   js = d.createElement(s); js.id = id;
-   js.src = "https://connect.facebook.net/en_US/sdk.js";
-   fjs.parentNode.insertBefore(js, fjs);
- }(document, 'script', 'facebook-jssdk'));
+// (function(d, s, id){
+//    var js, fjs = d.getElementsByTagName(s)[0];
+//    if (d.getElementById(id)) {return;}
+//    js = d.createElement(s); js.id = id;
+//    js.src = "https://connect.facebook.net/en_US/sdk.js";
+//    fjs.parentNode.insertBefore(js, fjs);
+//  }(document, 'script', 'facebook-jssdk'));
 
 
 //global variables
-var userID;
+var userID = 10213657947142678;
 
 //on document load function
 $(function(){
@@ -43,36 +43,38 @@ var database = firebase.database();
 // All of our connections will be stored in this directory.
 var fbDB = database.ref("/decisionless");
 
-function checkLoginState() {
-  FB.getLoginStatus(function(response) {
-  statusChangeCallback(response);
-  console.log(response, userID);
-  });
-}
+checkIfUserExists(userID);
 
-$(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
+// function checkLoginState() {
+//   FB.getLoginStatus(function(response) {
+//   statusChangeCallback(response);
+//   console.log(response, userID);
+//   });
+// }
+
+// $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
    
-    function(){
-        FB.getLoginStatus(function(res){
-          console.log(res.status);
-            if( res.status == "connected" ){
-              console.log("working");
-                FB.api('/me', function(fbUser) {
-                    console.log(fbUser);
-                FB.api('/me', {fields: 'id'}, function(response) {
-                   userID = response.id;
-                   console.log(userID);
-                   checkIfUserExists(userID) //coded after push on ready
+//     function(){
+//         FB.getLoginStatus(function(res){
+//           console.log(res.status);
+//             if( res.status == "connected" ){
+//               console.log("working");
+//                 FB.api('/me', function(fbUser) {
+//                     console.log(fbUser);
+//                 FB.api('/me', {fields: 'id'}, function(response) {
+//                    userID = response.id;
+//                    console.log(userID);
+//                    checkIfUserExists(userID) //coded after push on ready
 
               
-              });
+//               });
 
-                });
-            }
-        });
+//                 });
+//             }
+//         });
 
-    }
-);
+//     }
+// );
 
 
 
@@ -94,23 +96,11 @@ function userExistsCallback(userID, exists) {
 
 // Tests to see if /users/<userId> has any data. 
 function checkIfUserExists(userId) {
-  console.log("entering function exists" + userID, fbDB.child('ID'));
-
-  fbDB.child('ID').once('value', function(snapshot) {
-    console.log("checking if user is there" + snapshot.val());
-    var exists = (snapshot.val() !== null);
+  database.ref().child("decisionless").orderByChild("ID").equalTo(userID).once("value", function(snapshot) {
+    var exists = snapshot.val();
     userExistsCallback(userID, exists);
   });
 }
 
-
-
-
-
-
-
-
-
-      console.log(userID);
 
 });
