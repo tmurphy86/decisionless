@@ -94,7 +94,7 @@ function userExistsCallback(userID, exists) {
 
 // Tests to see if /users/<userId> has any data. 
 function checkIfUserExists(userId) {
-  console.log("entering function exists" + userID, fbDB);
+  console.log("entering function exists" + userID, fbDB.child('ID'));
 
   fbDB.child('ID').once('value', function(snapshot) {
     console.log("checking if user is there" + snapshot.val());
