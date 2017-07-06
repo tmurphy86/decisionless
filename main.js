@@ -82,8 +82,10 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
 
   function userExistsCallback(userID, exists) {
     if (exists) {
-
-      alert('user ' + userID + ' exists!');
+     database.ref().child("decisionless").orderByChild("ID").equalTo(userID).once("value", function(snapshot) {
+      console.log(snapshot);
+      console.log(snapshot.val());
+      
 
     } else {
 

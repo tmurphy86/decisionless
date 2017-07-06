@@ -2,8 +2,14 @@
   overflow: auto;
   text-align: left;
 }
-#map {
+#dynMap {
         height: 100%;
+}
+
+.fbook{
+  vertical-align: center;
+  width: 247px;
+  height: 25px;
 }
 
 #placesTitle {
