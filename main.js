@@ -22,6 +22,9 @@ window.fbAsyncInit = function() {
 
 //global variables
 var userID;
+var map;
+var infoWindow;
+var pos;
 
 //on document load function
 $(function(){
@@ -63,6 +66,7 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
                    userID = response.id;
                    console.log(userID);
                    checkIfUserExists(userID) //coded after push on ready
+                   initMap();
 
               
               });
@@ -100,7 +104,44 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
     });
   }
 
-// GET https://api.yelp.com/v3/businesses/search
+
+
+
+
+
+  //Map API load on page
+  function initMap() {
+    map = new google.maps.Map(document.getElementById('map'), {
+      center: {lat: 0.000, lng: 0.000},
+      zoom: 14
+    });
+    infoWindow = new google.maps.InfoWindow;
+
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(function(position) {
+        pos = {
+          lat: position.coords.latitude,
+          lng: position.coords.longitude
+        };
+        infoWindow.setPosition(pos);
+        infoWindow.setContent('Location found.');
+        infoWindow.open(map);
+        map.setCenter(pos);
+      }, function() {
+        handleLocationError(true, infoWindow, map.getCenter());
+      });
+    } else {
+      handleLocationError(false, infoWindow, map.getCenter());
+    }
+  }
+
+  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+    infoWindow.setPosition(pos);
+    infoWindow.setContent(browserHasGeolocation ?
+                          'Error: Geolocation failed.' :
+                          'Error: User browser doesn\'t support geolocation.');
+    infoWindow.open(map);
+  }
 
 
 
