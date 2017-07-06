@@ -26,6 +26,7 @@ var map;
 var infoWindow;
 var pos;
 var userVisted;
+var userKey;
 
 //on document load function
 $(function(){
@@ -46,6 +47,14 @@ var config = {
 var database = firebase.database();
 // All of our connections will be stored in this directory.
 var fbDB = database.ref("/decisionless");
+
+
+//delete when LIVE
+  // userID = 999999;
+  //  checkIfUserExists(userID) //coded after push on ready
+  //  initMap();
+
+//UNCOMMENT FOR FACEBOOK LOGIN
 
 function checkLoginState() {
   FB.getLoginStatus(function(response) {
@@ -84,10 +93,16 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
   function userExistsCallback(userID, exists) {
     if (exists) {
      database.ref().child("decisionless").orderByChild("ID").equalTo(userID).once("value", function(snapshot) {
-          console.log(snapshot.val());
-          userVisted = snapshot.val().visted;
-          beenThere(userVisted);
+          snapshot.forEach(function(snap){
+             userKey = snap.key;
+          });
+          var userVisted = snapshot.child(userKey+'/visted').val();
+          console.log(userKey);
+          console.log(userVisted);
+          beenThere(userVisted);        
       });
+
+    
 
     } else {
 
@@ -111,9 +126,16 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
 
 
   function beenThere(userVisted){
-    console.log(userVisted.length);
-    for (var i = userVisted.length - 1; i >= 0; i--) {
+    console.log(userVisted);
+    console.log(Object.keys(userVisted).length);
+
+    for (var i = Object.keys(userVisted).length - 1; i >= 0; i--) {
+      console.log(userVisted[i]);
+
       //api call to google for places ID name and rating etc
+
+
+      //write to UI
       $('.collection').append('<li>', userVisted[i]);
     }
 
