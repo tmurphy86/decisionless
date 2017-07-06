@@ -21,7 +21,7 @@ window.fbAsyncInit = function() {
 
 
 //global variables
-var userID = 10213657947142678;
+var userID;
 
 //on document load function
 $(function(){
@@ -42,8 +42,6 @@ var config = {
 var database = firebase.database();
 // All of our connections will be stored in this directory.
 var fbDB = database.ref("/decisionless");
-
-checkIfUserExists(userID);
 
 function checkLoginState() {
   FB.getLoginStatus(function(response) {
