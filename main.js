@@ -93,7 +93,7 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
 
         database.ref("/decisionless").push({
           ID: userID,
-          visted: {userID}//beenTo Array
+          visted: [userID,100002,10003]//beenTo Array
         });
 
       alert('user ' + userID + ' does not exist!');
