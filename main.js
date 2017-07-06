@@ -25,6 +25,7 @@ var userID;
 var map;
 var infoWindow;
 var pos;
+var userVisted;
 
 //on document load function
 $(function(){
@@ -79,12 +80,13 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
 );
 
 
-
+  //if user is in DB move on, 
   function userExistsCallback(userID, exists) {
     if (exists) {
      database.ref().child("decisionless").orderByChild("ID").equalTo(userID).once("value", function(snapshot) {
-      console.log(snapshot);
-      console.log(snapshot.val());
+          console.log(snapshot.val());
+          userVisted = snapshot.val().visted;
+          beenThere(userVisted);
       });
 
     } else {
@@ -98,6 +100,7 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
     }
   }
 
+
   // Tests to see if /users/<userId> has any data. 
   function checkIfUserExists(userId) {
     database.ref().child("decisionless").orderByChild("ID").equalTo(userID).once("value", function(snapshot) {
@@ -107,6 +110,13 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
   }
 
 
+  function beenThere(userVisted){
+    for (var i = userVisted.length - 1; i >= 0; i--) {
+      //api call to google for places ID name and rating etc
+      $('.collection').append('<li>', userVisted[i]);
+    }
+
+  }
 
 
 
