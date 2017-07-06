@@ -93,7 +93,7 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
 
         database.ref("/decisionless").push({
           ID: userID,
-          visted: userID//beenTo Array
+          visted: {userID}//beenTo Array
         });
 
       alert('user ' + userID + ' does not exist!');
@@ -111,6 +111,7 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
 
 
   function beenThere(userVisted){
+    console.log(userVisted.length);
     for (var i = userVisted.length - 1; i >= 0; i--) {
       //api call to google for places ID name and rating etc
       $('.collection').append('<li>', userVisted[i]);
