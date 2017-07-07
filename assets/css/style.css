@@ -10,6 +10,14 @@
 	position: fixed;!important
 }
 
+#map-canvas {
+  	width: 100%; 
+  	height: 300px;
+	margin: 0;
+	padding: 15px;
+}
+
+
 body {
 	/*background-image: url(../images/map.png); */
 	font-size: 24px;

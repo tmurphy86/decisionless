@@ -164,7 +164,7 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
 
   //Map API load on page
   function initMap() {
-    map = new google.maps.Map(document.getElementById('map'), {
+    map = new google.maps.Map(document.getElementById('map-canvas'), {
       center: {lat: 0.000, lng: 0.000},
       zoom: 14
     });
