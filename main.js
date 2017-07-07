@@ -166,7 +166,7 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
   function initMap() {
     map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 0.000, lng: 0.000},
-      zoom: 8
+      zoom: 14
     });
     infoWindow = new google.maps.InfoWindow;
     service = new google.maps.places.PlacesService(map);
