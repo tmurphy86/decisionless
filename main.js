@@ -153,6 +153,10 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
     infoWindow = new google.maps.InfoWindow;
     service = new google.maps.places.PlacesService(map);
     map.addListener('idle', performSearch);
+    
+     google.maps.event.addListener(map, "idle", function(){
+        google.maps.event.trigger(map, 'resize'); 
+    });
 
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
@@ -212,6 +216,10 @@ function addMarker(place) {
     });
   });
 }
+
+
+
+
 
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
