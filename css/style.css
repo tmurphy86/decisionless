@@ -2,7 +2,7 @@
   overflow: auto;
   text-align: left;
 }
-#dynMap {
+#map {
         height: 100%;
         overflow: visible;
 }

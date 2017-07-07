@@ -146,9 +146,9 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
 
   //Map API load on page
   function initMap() {
-    map = new google.maps.Map(document.getElementById('dynMap'), {
+    map = new google.maps.Map(document.getElementById('map'), {
       center: {lat: 0.000, lng: 0.000},
-      zoom: 14
+      zoom: 8
     });
     infoWindow = new google.maps.InfoWindow;
     service = new google.maps.places.PlacesService(map);
