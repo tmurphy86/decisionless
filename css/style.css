@@ -4,6 +4,7 @@
 }
 #dynMap {
         height: 100%;
+        overflow: visible;
 }
 
 .fbook{
