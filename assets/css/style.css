@@ -4,8 +4,9 @@
 	padding: 0px;
 }
 #map {
-	max-height:none;
-	z-index: -5;
+/*	max-height:none;*/
+	overflow: none;
+	/*z-index: -5;*/
 	position: none;
 }
 
