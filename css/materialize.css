@@ -2758,7 +2758,7 @@ video.responsive-video {
   z-index: -1;
 }
 
-/*.parallax-container .parallax img {
+.parallax-container .parallax img {
   display: none;
   position: absolute;
   left: 50%;
@@ -2769,7 +2769,7 @@ video.responsive-video {
   transform: translate3d(0, 0, 0);
   -webkit-transform: translateX(-50%);
           transform: translateX(-50%);
-}*/
+}
 
 .pin-top, .pin-bottom {
   position: relative;
