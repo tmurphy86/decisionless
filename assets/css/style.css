@@ -3,6 +3,9 @@
 	margin: 0px;
 	padding: 0px;
 }
+#map {
+	max-height:none;
+}
 
 body {
 	background-image: url(../images/map.png); 
