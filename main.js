@@ -63,23 +63,23 @@ function checkLoginState() {
   });
 }
 
-$.ajax({
-  type: 'GET',
-  url: "https://maps.googleapis.com/maps/api/place/radarsearch/json?",
-  dataType: 'json',
-  data: {
-    'location' : pos.lat","pos.lng,
-    'radius' : 4024,
-    'key' : 'AIzaSyBiCck3kyDIaaaAf0XR8RTcjCkouSUJdyc',
-    'opennow' : true,
-    'type' : restaurant
+// $.ajax({
+//   type: 'GET',
+//   url: "https://maps.googleapis.com/maps/api/place/radarsearch/json?",
+//   dataType: 'json',
+//   data: {
+//     'location' : pos.lat","pos.lng,
+//     'radius' : 4024,
+//     'key' : 'AIzaSyBiCck3kyDIaaaAf0XR8RTcjCkouSUJdyc',
+//     'opennow' : true,
+//     'type' : restaurant
 
-        },
-        success: function(){
+//         },
+//         success: function(){
           
-        }
-      }
-    })
+//         }
+//       }
+//     })
 
 $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
    
