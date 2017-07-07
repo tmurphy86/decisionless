@@ -5,10 +5,11 @@
 }
 #map {
 	max-height:none;
+	z-index: -5;
 }
 
 body {
-	background-image: url(../images/map.png); 
+	/*background-image: url(../images/map.png); */
 	font-size: 24px;
 	line-height: 32px;
 	color: #777777;
