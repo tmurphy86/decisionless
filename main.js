@@ -25,7 +25,7 @@ var userID;
 var map;
 var infoWindow;
 var pos;
-var userVisted;
+var userVisited;
 var userKey;
 
 //on document load function
@@ -96,10 +96,10 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
           snapshot.forEach(function(snap){
              userKey = snap.key;
           });
-          var userVisted = snapshot.child(userKey+'/visted').val();
+          var userVisited = snapshot.child(userKey+'/visited').val();
           console.log(userKey);
-          console.log(userVisted);
-          beenThere(userVisted);        
+          console.log(userVisited);
+          beenThere(userVisited);        
       });
 
     
@@ -108,7 +108,7 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
 
         database.ref("/decisionless").push({
           ID: userID,
-          visted: [userID,100002,10003]//beenTo Array
+          visited: [userID,100002,10003]//beenTo Array
         });
 
       alert('user ' + userID + ' does not exist!');
@@ -125,18 +125,18 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
   }
 
 
-  function beenThere(userVisted){
-    console.log(userVisted);
-    console.log(Object.keys(userVisted).length);
+  function beenThere(userVisited){
+    console.log(userVisited);
+    console.log(Object.keys(userVisited).length);
 
-    for (var i = Object.keys(userVisted).length - 1; i >= 0; i--) {
-      console.log(userVisted[i]);
+    for (var i = Object.keys(userVisited).length - 1; i >= 0; i--) {
+      console.log(userVisited[i]);
 
       //api call to google for places ID name and rating etc
 
 
       //write to UI
-      $('.collection').append('<li>', userVisted[i]);
+      $('.collection').append('<li>', userVisited[i]);
     }
 
   }
