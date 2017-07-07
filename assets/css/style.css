@@ -5,9 +5,9 @@
 }
 #map {
 /*	max-height:none;*/
-	overflow: none; !important
+	overflow: auto; !important
 	/*z-index: -5;*/
-	position: none;!important
+	position: fixed;!important
 }
 
 body {
