@@ -78,7 +78,7 @@ $(document).on('fbload',
     }
 );
 
-  //Checks to see if user is in the database. If so, it recalls their ID and recalls their session. If not, it assigns a new ID 
+  //Checks to see if user is in the database. If so, it recalls their ID and recalls their session. If not, it assigns a new ID.
   function userExistsCallback(userID, exists) {
     if (exists) {
      database.ref().child("decisionless").orderByChild("ID").equalTo(userID).once("value", function(snapshot) {
@@ -114,20 +114,11 @@ $(document).on('fbload',
 
     for (var i = Object.keys(userVisited).length - 1; i >= 0; i--) {
       console.log(userVisited[i]);
-
-      //api call to google for places ID name and rating etc
-
-
       //write to UI
       $('.collection').append('<li>', userVisited[i]);
     }
-
   }
-
-
-
-
-  //Map API load on page
+  //Map API, loads on page, default center on 0,0. To be overwritten by geolocate if no problems.
   function initMap() {
     map = new google.maps.Map(document.getElementById('map-canvas'), {
       center: {lat: 0.000, lng: 0.000},
@@ -138,16 +129,20 @@ $(document).on('fbload',
     map.addListener('idle', performSearch);
 
      google.maps.event.addListener(map, "idle", function(){
-        console.log("resize function kicking of for the map");
+        console.log("resize function kicking off for the map");
         google.maps.event.trigger(map, 'resize'); 
     });
 
+    //HTML5 Geolocation stuff, asks user if it can use their location.
+    //Then it sets their Lat/Lng and sets the center point of map on them.
     if (navigator.geolocation) {
       navigator.geolocation.getCurrentPosition(function(position) {
+        //stores location of user in global variable pos
         pos = {
           lat: position.coords.latitude,
           lng: position.coords.longitude
         };
+        //Sets a marker on the location of pos that reads 'Location found'
         infoWindow.setPosition(pos);
         infoWindow.setContent('Location found.');
         infoWindow.open(map);
@@ -156,10 +151,13 @@ $(document).on('fbload',
         handleLocationError(true, infoWindow, map.getCenter());
       });
     } else {
+      //If there's been a problem, kick down to error handler.
       handleLocationError(false, infoWindow, map.getCenter());
     }
   }
-
+//The actual search query, checks the bounds of the map and polls Google's Places API
+//to find a restaurant that's within a 2.5 mile radius of the user and is open at the 
+//time the search is logged.
 function performSearch() {
   var request = {
     bounds: map.getBounds(),
@@ -168,21 +166,26 @@ function performSearch() {
     opennow: true,
     radius: 4024,
   };
+  //After query is logged, calls back to a for loop to log in results.
+  //Look at the function below.
   service.radarSearch(request, callback);
   }
 
 function callback(results, status) {
+  //Did things not turn out okay? Report the status to console.
   if (status !== google.maps.places.PlacesServiceStatus.OK) {
     console.error(status);
     return;
   }
+  //If things turned out okay, add a marker for each result(See function below). Then call the arrayRandomizer 
+  //function to make the decision.
   for (var i = 0, result; result = results[i]; i++) {
     addMarker(result);
     console.log(result);
     arrayRandomizer(result);
   }
 }
-
+//Adds in a marker for a place returned by Google. 
 function addMarker(place) {
   var marker = new google.maps.Marker({
     map: map,
@@ -213,6 +216,8 @@ function addMarker(place) {
     console.log(arraySearch);
   }
 
+  //Handles errors, if this routine has been activated, it means that either the geolocation
+  //has failed for an unspecified reason, or the browser is unable to support HTML5 geolocate.
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
     infoWindow.setPosition(pos);
     infoWindow.setContent(browserHasGeolocation ?
