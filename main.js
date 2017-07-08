@@ -221,15 +221,18 @@ function addMarker(place) {
 //The actual array randomizer, takes a series of results and selects a single one via the random function.
 function arrayRandomizer(result) {
  console.log("entering arrayRandomizer");
- console.log(result.id);
+ console.log(result.place_id);
  arraySearch.push(result.id);
  console.log(arraySearch);
+ // console.log(arraySearch);
+
 }
 //Rolls for a number between 1 and the array's length to determine a location to highlight
 function random() {
 $('.randomizeBtn').on('click', function(){ 
   var locationValue = Math.floor((Math.random()* arraySearch.length) + 1);
     console.log(arraySearch[locationValue])
+    console.log("have selected a random location");
     // database.ref("/decisionless").userKey.visited.set({
           
     //       visited: []//beenTo Array
