@@ -232,11 +232,11 @@ $('.randomizeBtn').on('click', function(){
   var locationValue = Math.floor((Math.random()* arraySearch.length) + 1);
     console.log(arraySearch[locationValue]);
     console.log("have selected a random location");
-    service.getDetails(place, function((arraySearch[locationValue])) {
-    // database.ref("/decisionless").userKey.visited.set({
+  //   service.getDetails(place, function((arraySearch[locationValue])) {
+  //   // database.ref("/decisionless").userKey.visited.set({
           
-    //       visited: []//beenTo Array
-  });
+  //   //       visited: []//beenTo Array
+  // });
 });
 
 
