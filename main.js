@@ -211,20 +211,19 @@ function addMarker(place) {
 }
 
 function arrayRandomizer(result) {
-  console.log("entering arrayRandomizer");
-  console.log(result.id);
+ console.log("entering arrayRandomizer");
+ console.log(result.id);
  arraySearch = arraySearch.push(result.id);
  console.log(arraySearch);
 
 }
 
 
-
-  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
-                          'Error: Geolocation failed.' :
-                          'Error: User browser doesn\'t support geolocation.');
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+        'Error: Geolocation failed.' :
+        'Error: User browser doesn\'t support geolocation.');
     infoWindow.open(map);
   }
 });
