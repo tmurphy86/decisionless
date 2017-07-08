@@ -1,4 +1,3 @@
-
 // //FACEBOOK AUTH SDK 
 window.fbAsyncInit = function() {
   FB.init({
@@ -12,13 +11,12 @@ window.fbAsyncInit = function() {
 };
 
 (function(d, s, id){
-   var js, fjs = d.getElementsByTagName(s)[0];
-   if (d.getElementById(id)) {return;}
-   js = d.createElement(s); js.id = id;
-   js.src = "https://connect.facebook.net/en_US/sdk.js";
-   fjs.parentNode.insertBefore(js, fjs);
- }(document, 'script', 'facebook-jssdk'));
-
+  var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id;
+  js.src = "https://connect.facebook.net/en_US/sdk.js";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
 
 //global variables
 var userID;
@@ -29,9 +27,10 @@ var userVisited;
 var userKey;
 var selectedLoc;
 var arraySearch = [];
+
+
 //on document load function
 $(function(){
-
 
 //FIREBASE CONFIG
 var config = {
@@ -42,20 +41,17 @@ var config = {
     storageBucket: "murphytech-6f573.appspot.com",
     messagingSenderId: "158805281949"
   };
-  firebase.initializeApp(config);
+firebase.initializeApp(config);
 
-  // Create a variable to reference the database.
+// Create a variable to reference the database.
 var database = firebase.database();
 // All of our connections will be stored in this directory.
 var fbDB = database.ref("/decisionless");
 
-
-//delete when LIVE
+//Uncomment to dummy FB connectivity, be sure to comment out the Facebook login checker!
   // userID = 999999;
   //  checkIfUserExists(userID) //coded after push on ready
   //  initMap();
-
-//UNCOMMENT FOR FACEBOOK LOGIN
 
 function checkLoginState() {
   FB.getLoginStatus(function(response) {
@@ -64,12 +60,9 @@ function checkLoginState() {
   });
 }
 
-// $("#randomizeBtn").on("click", function() {
-
-//     })
-
-$(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
-   
+//This is a custom event that waits for Facebook to connect and load.
+//Calls the initMap function when Facebook is good to go.
+$(document).on('fbload',
     function(){
         FB.getLoginStatus(function(res){
           console.log(res.status);
@@ -82,19 +75,14 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
                    console.log(userID);
                    checkIfUserExists(userID) //coded after push on ready
                    initMap();
-
-              
-              });
-
+                  });
                 });
             }
         });
-
     }
 );
 
-
-  //if user is in DB move on, 
+  //Checks to see if user is in the database. If so, it recalls their ID and recalls their session. If not, it assigns a new ID 
   function userExistsCallback(userID, exists) {
     if (exists) {
      database.ref().child("decisionless").orderByChild("ID").equalTo(userID).once("value", function(snapshot) {
@@ -106,20 +94,14 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
           console.log(userVisited);
           beenThere(userVisited);        
       });
-
-    
-
     } else {
-
         database.ref("/decisionless").push({
           ID: userID,
           visited: [userID,100002,10003]//beenTo Array
         });
-
-      alert('user ' + userID + ' does not exist!');
+      console.log('user ' + userID + ' does not exist!');
     }
   }
-
 
   // Tests to see if /users/<userId> has any data. 
   function checkIfUserExists(userId) {
@@ -245,7 +227,4 @@ function arrayRandomizer(result) {
                           'Error: User browser doesn\'t support geolocation.');
     infoWindow.open(map);
   }
-
-
-
 });
