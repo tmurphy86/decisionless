@@ -146,7 +146,9 @@ footer {
 }
 
 #randomizeBtn {
-	float: left;
+	margin-left: 55%;
+	padding-left: 50px;
+	padding-right: 50px;
 }
 
 @media screen and (max-width: 980px) {

@@ -25,6 +25,10 @@ var infoWindow;
 var pos;
 var userVisited;
 var userKey;
+var selectedLoc;
+var arraySearch = [];
+
+
 //on document load function
 $(function(){
 
@@ -209,13 +213,16 @@ function addMarker(place) {
   });
 }
 
-  function arrayRandomizer(result) {
-    console.log("entering arrayRandomizer");
-    console.log(result.id);
-    var arraySearch = arraySearch.push(result.id);
-    console.log(arraySearch);
-  }
+function arrayRandomizer(result) {
+ console.log("entering arrayRandomizer");
+ console.log(result.id);
+ arraySearch = arraySearch.push(result.id);
+ console.log(arraySearch);
 
+}
+
+
+<<<<<<< HEAD
   //Handles errors, if this routine has been activated, it means that either the geolocation
   //has failed for an unspecified reason, or the browser is unable to support HTML5 geolocate.
   function handleLocationError(browserHasGeolocation, infoWindow, pos) {
@@ -223,6 +230,13 @@ function addMarker(place) {
     infoWindow.setContent(browserHasGeolocation ?
                           'Error: Geolocation failed.' :
                           'Error: User browser doesn\'t support geolocation.');
+=======
+function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+        'Error: Geolocation failed.' :
+        'Error: User browser doesn\'t support geolocation.');
+>>>>>>> 1553a46b995225a5ffa7381e2b14131aeecc0ace
     infoWindow.open(map);
   }
 });
