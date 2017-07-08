@@ -63,16 +63,19 @@ function checkLoginState() {
   });
 }
 
-// $.ajax({
-//   type: 'GET',
-//   url: "https://maps.googleapis.com/maps/api/place/radarsearch/json?",
-//   dataType: 'json',
-//   data: {
-//     'location' : pos.lat","pos.lng,
-//     'radius' : 4024,
-//     'key' : 'AIzaSyBiCck3kyDIaaaAf0XR8RTcjCkouSUJdyc',
-//     'opennow' : true,
-//     'type' : restaurant
+// $("#randomizeBtn").on("click", function() {
+//   var queryURL = "https://maps.googleapis.com/maps/api/place/radarsearch/json?";
+
+//   $.ajax({
+//     method: 'GET',
+//     url: queryURL,
+//     dataType: 'json',
+//     data: {
+//       'location' : pos.lat + "," + pos.lng,
+//       'radius' : 4024,
+//       'key' : 'AIzaSyBiCck3kyDIaaaAf0XR8RTcjCkouSUJdyc',
+//       'opennow' : true,
+//       'type' : restaurant
 
 //         },
 //         success: function(){
@@ -194,13 +197,14 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
       handleLocationError(false, infoWindow, map.getCenter());
     }
   }
-
-  function performSearch() {
+$("#randomizeBtn").on("click", function() {
+function performSearch() {
   var request = {
     bounds: map.getBounds(),
-    keyword: 'best view'
+    keyword: 'restaurant'
   };
   service.radarSearch(request, callback);
+}
 }
 
 function callback(results, status) {
