@@ -218,7 +218,7 @@ function addMarker(place) {
 function arrayRandomizer(result) {
  console.log("entering arrayRandomizer");
  console.log(result.place_id);
- arraySearch.push(result.id);
+ arraySearch.push(result.place_id);
  // console.log(arraySearch);
 
 }
