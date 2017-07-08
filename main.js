@@ -28,6 +28,7 @@ var pos;
 var userVisited;
 var userKey;
 var selectedLoc;
+var arraySearch = [];
 //on document load function
 $(function(){
 
@@ -230,7 +231,7 @@ function addMarker(place) {
 function arrayRandomizer(result) {
   console.log("entering arrayRandomizer");
   console.log(result.id);
- var arraySearch = arraySearch.push(result.id);
+ arraySearch = arraySearch.push(result.id);
  console.log(arraySearch);
 
 }
