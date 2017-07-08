@@ -228,22 +228,11 @@ function random() {
           
     //       visited: []//beenTo Array
 }
-
-<<<<<<< HEAD
-  //Handles errors, if this routine has been activated, it means that either the geolocation
-  //has failed for an unspecified reason, or the browser is unable to support HTML5 geolocate.
-  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-    infoWindow.setPosition(pos);
-    infoWindow.setContent(browserHasGeolocation ?
-                          'Error: Geolocation failed.' :
-                          'Error: User browser doesn\'t support geolocation.');
-=======
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(browserHasGeolocation ?
         'Error: Geolocation failed.' :
         'Error: User browser doesn\'t support geolocation.');
->>>>>>> 1553a46b995225a5ffa7381e2b14131aeecc0ace
     infoWindow.open(map);
   }
 });
