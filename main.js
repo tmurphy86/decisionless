@@ -225,6 +225,7 @@ function arrayRandomizer(result) {
 $('.randomizeBtn').on('click', function(){ 
   var locationValue = Math.floor((Math.random()* arraySearch.length) + 1);
     console.log(arraySearch[locationValue])
+    console.log("have selected a random location");
     // database.ref("/decisionless").userKey.visited.set({
           
     //       visited: []//beenTo Array
