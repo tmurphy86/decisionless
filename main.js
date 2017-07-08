@@ -197,7 +197,7 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
       handleLocationError(false, infoWindow, map.getCenter());
     }
   }
-$("#randomizeBtn").on("click", function() {
+
 function performSearch() {
   var request = {
     bounds: map.getBounds(),
@@ -205,7 +205,6 @@ function performSearch() {
   };
   service.radarSearch(request, callback);
   }
-});
 
 function callback(results, status) {
   if (status !== google.maps.places.PlacesServiceStatus.OK) {
