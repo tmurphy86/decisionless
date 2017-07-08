@@ -204,7 +204,7 @@ function performSearch() {
     keyword: 'restaurant'
   };
   service.radarSearch(request, callback);
-}
+  }
 });
 
 function callback(results, status) {
