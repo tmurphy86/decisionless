@@ -200,27 +200,30 @@ function addMarker(place) {
       scaledSize: new google.maps.Size(10, 17)
     }
   });
-
+  //Listens for a click, on a map marker. When it detects one, it creates a small popup for what
+  //the icon is. 
   google.maps.event.addListener(marker, 'click', function() {
     service.getDetails(place, function(result, status) {
+      //Is the result reported on click?
+      //If not, write the status to the console.
       if (status !== google.maps.places.PlacesServiceStatus.OK) {
         console.error(status);
         return;
       }
+      //If there are no issues, create a little popup to display the location name.
       infoWindow.setContent(result.name);
       infoWindow.open(map, marker);
     });
   });
 }
-
+//The actual array randomizer, takes a series of results and selects a single one via the random function.
 function arrayRandomizer(result) {
  console.log("entering arrayRandomizer");
  console.log(result.id);
  arraySearch.push(result.id);
  console.log(arraySearch);
-
 }
-
+//Rolls for a number between 1 and the array's length to determine a location to highlight
 function random() {
   var locationValue = Math.floor((Math.random()* arraySearch.length) + 1);
     console.log(arraySearch[locationValue])
@@ -228,6 +231,9 @@ function random() {
           
     //       visited: []//beenTo Array
 }
+//Has something gone wrong with geolocation?
+//Either the geolocation has failed for an unspecified reason, or the user's browser
+//doesn't support the use of the HTML 5 geolocate feature.
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(browserHasGeolocation ?
