@@ -97,7 +97,7 @@ $(document).on('fbload',
     } else {
         database.ref("/decisionless").push({
           ID: userID,
-          visited: [userID,100002,10003]//beenTo Array
+          visited: []//beenTo Array
         });
       console.log('user ' + userID + ' does not exist!');
     }
@@ -213,11 +213,18 @@ function addMarker(place) {
 function arrayRandomizer(result) {
  console.log("entering arrayRandomizer");
  console.log(result.id);
- arraySearch = arraySearch.push(result.id);
+ arraySearch = arraySearch.push('result.id');
  console.log(arraySearch);
 
 }
 
+function random() {
+  var locationValue = Math.floor((Math.random()* arraySearch.length) + 1);
+    console.log(arraySearch[locationValue])
+    // database.ref("/decisionless").userKey.visited.set({
+          
+    //       visited: []//beenTo Array
+}
 
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
