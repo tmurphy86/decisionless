@@ -222,14 +222,16 @@ function arrayRandomizer(result) {
  console.log(arraySearch);
 
 }
-
-function random() {
+$('.randomizeBtn').on('click', function(){ 
   var locationValue = Math.floor((Math.random()* arraySearch.length) + 1);
     console.log(arraySearch[locationValue])
     // database.ref("/decisionless").userKey.visited.set({
           
     //       visited: []//beenTo Array
-}
+
+
+});
+
 function handleLocationError(browserHasGeolocation, infoWindow, pos) {
   infoWindow.setPosition(pos);
   infoWindow.setContent(browserHasGeolocation ?
