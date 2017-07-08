@@ -85,6 +85,12 @@ footer {
 	font-weight: 100;
 	letter-spacing: -1px;
 	color: black;
+
+}
+
+.move {
+	display: inline;
+
 }
 
 .page-footer {
@@ -149,15 +155,19 @@ footer {
 	text-align: left;
 }
 
-#searchButton {
-	float: right;
-	margin-top: 20px;
+#randomizeBtn {
+	float: left;
+	/*margin-top: 20px;*/
 }
 
-#searchBar {
+#placesBeen {
+	padding-bottom: 5px;
+}
+/*#searchBar {
 	float: left;
 	text-align: left;
-}
+	display: inline-block;
+}*/
 
 @media screen and (max-width: 980px) {
 	
