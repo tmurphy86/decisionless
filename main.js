@@ -199,6 +199,7 @@ function callback(results, status) {
   }
   for (var i = 0, result; result = results[i]; i++) {
     addMarker(result);
+    console.log(result);
     arrayRandomizer(result);
   }
 }
@@ -227,6 +228,8 @@ function addMarker(place) {
 }
 
 function arrayRandomizer(result) {
+  console.log("entering arrayRandomizer");
+  console.log(result.id);
  var arraySearch = arraySearch.push(result.id);
  console.log(arraySearch);
 
