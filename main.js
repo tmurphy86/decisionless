@@ -201,7 +201,8 @@ $(document).on('fbload',  //  <---- HERE'S OUR CUSTOM EVENT for FB load
 function performSearch() {
   var request = {
     bounds: map.getBounds(),
-    keyword: 'restaurant'
+    keyword: 'best view',
+    types: ['restaurant']
   };
   service.radarSearch(request, callback);
   }
