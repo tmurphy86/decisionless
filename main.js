@@ -227,7 +227,8 @@ function addMarker(place) {
 }
 
 function arrayRandomizer(result) {
-
+ var arraySearch = arraySearch.push(result.id);
+ console.log(arraySearch);
 
 }
 
