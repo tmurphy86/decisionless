@@ -250,4 +250,4 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: User browser doesn\'t support geolocation.');
     infoWindow.open(map);
   }
-};
+});
