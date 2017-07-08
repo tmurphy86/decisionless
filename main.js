@@ -1,4 +1,4 @@
-// //FACEBOOK AUTH SDK 
+//FACEBOOK AUTH SDK 
 window.fbAsyncInit = function() {
   FB.init({
     appId      : '816250271863348',
@@ -92,11 +92,13 @@ $(document).on('fbload',
           var userVisited = snapshot.child(userKey+'/visited').val();
           console.log(userKey);
           console.log(userVisited);
-          beenThere(userVisited);        
+          beenThere(userVisited);
+          //start timer until next randomization to reduce replay        
       });
     } else {
         database.ref("/decisionless").push({
           ID: userID,
+          time: true,
           visited: []//beenTo Array
         });
       console.log('user ' + userID + ' does not exist!');
@@ -225,12 +227,14 @@ function arrayRandomizer(result) {
 }
 //Rolls for a number between 1 and the array's length to determine a location to highlight
 function random() {
+$('.randomizeBtn').on('click', function(){ 
   var locationValue = Math.floor((Math.random()* arraySearch.length) + 1);
     console.log(arraySearch[locationValue])
     // database.ref("/decisionless").userKey.visited.set({
           
     //       visited: []//beenTo Array
 }
+});
 //Has something gone wrong with geolocation?
 //Either the geolocation has failed for an unspecified reason, or the user's browser
 //doesn't support the use of the HTML 5 geolocate feature.
@@ -241,4 +245,4 @@ function handleLocationError(browserHasGeolocation, infoWindow, pos) {
         'Error: User browser doesn\'t support geolocation.');
     infoWindow.open(map);
   }
-});
+};
